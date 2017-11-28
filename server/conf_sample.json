@@ -1,0 +1,28 @@
+{
+  "port": 80,
+  "addStorage": [
+      {"name":"second","path":"__DIR__/videos2"}
+  ],
+  "language": "en_CA",
+  "db": {
+    "host": "MYSQL_HOST",
+    "user": "MYSQL_USER",
+    "password": "MYSQL_PASSWORD",
+    "database": "MYSQL_DATABASE",
+    "port":3306
+  },
+  "mail":{
+    "service": "gmail",
+    "auth": {
+        "user": "your_email@gmail.com",
+        "pass": "your_password_or_app_specific_password"
+        }
+  },
+  "cron":{
+      "key":"RUNDOM_CRON"
+  },
+  "pluginKeys":{
+      "Motion":"RUNDOM_MOTION",
+      "OpenCV":"RUNDOM_OPENCV"
+  }
+}

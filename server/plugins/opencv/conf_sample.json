@@ -1,0 +1,6 @@
+{
+  "plug":"OpenCV",
+  "host":"localhost",
+  "port":80,
+  "key":"RUNDOM_OPENCV"
+}
