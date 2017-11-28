@@ -1,11 +1,18 @@
 FROM alpine:3.6
 EXPOSE 3306
 
+EXPOSE 3306
+
 WORKDIR /app
 VOLUME /app
-COPY startup.sh /startup.sh
 
 RUN apk add --update mysql mysql-client && rm -f /var/cache/apk/*
+
+RUN mkdir /run/mysqld/
+RUN mkfifo /run/mysqld/mysqld.sock
+RUN chown -R root /run/mysqld/
+
+COPY startup.sh /startup.sh
 COPY my.cnf /etc/mysql/my.cnf
 
 
