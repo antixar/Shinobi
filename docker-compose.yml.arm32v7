@@ -4,7 +4,7 @@ services:
   db:
     build:
       context: ./sql/
-      dockerfile: Dockerfile.amd64
+      dockerfile: Dockerfile.arm32v7
     restart: always
     volumes:
       - ./sql/docker:/docker-entrypoint-initdb.d:ro
