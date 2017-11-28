@@ -1,10 +1,10 @@
-FROM node:8.9.1-alpine
+FROM ogomez/arm32v7-alpine
 
 EXPOSE 80
 
-VOLUME ["/opt/shinobi/videos"]
+RUN apk add --update --no-cache ffmpeg python pkgconfig cairo-dev make g++ jpeg-dev nodejs nodejs-npm
 
-RUN apk add --update --no-cache ffmpeg python pkgconfig cairo-dev make g++ jpeg-dev
+VOLUME ["/opt/shinobi/videos"]
 WORKDIR /opt/shinobi
 
 ENV MYSQL_USER "shinobi"

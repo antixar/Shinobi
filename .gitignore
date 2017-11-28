@@ -12,3 +12,4 @@ npm-debug.log
 server/.npmignore
 server/package-lock.json
 server/package.json
+docker-compose.yml

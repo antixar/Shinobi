@@ -17,6 +17,7 @@ services:
     depends_on:
       - "db"
     command: camera.js
+    dockerfile: Dockerfile.amd64
     build:
       context: .
     dns: 10.89.10.1
@@ -38,6 +39,7 @@ services:
     depends_on:
       - "db"
     command: cron.js
+    dockerfile: Dockerfile.amd64
     build:
       context: .
     dns: 10.89.10.1
@@ -55,6 +57,7 @@ services:
     depends_on:
       - "db"
     command: plugins/motion/shinobi-motion.js
+    dockerfile: Dockerfile.amd64
     dns: 10.89.10.1
     build:
       context: .

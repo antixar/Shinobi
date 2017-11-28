@@ -1,0 +1,73 @@
+version: '2'
+
+services:
+  db:
+    image: x11tete11x/arm32v7-mysql:latest
+    restart: always
+    volumes:
+      - ./sql/docker:/docker-entrypoint-initdb.d:ro
+      - /mnt/storage/dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Gae7Eeg2Ae
+      MYSQL_USER: shinobibot
+      MYSQL_PASSWORD: Gae7Eeg2Ae
+      MYSQL_DATABASE: shinobi
+
+  camera:
+    depends_on:
+      - "db"
+    command: camera.js
+    dockerfile: Dockerfile.arm32v7
+    build:
+      context: .
+    dns: 10.89.10.1
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: shinobi
+      MYSQL_USER: shinobibot
+      MYSQL_PASSWORD: Gae7Eeg2Ae
+    ports:
+      - 80:80
+    volumes:
+      - /mnt/storage/videos:/opt/shinobi/videos
+        #      - ./server:/server
+    links:
+      - db:db
+  
+  cron:
+    depends_on:
+      - "db"
+    command: cron.js
+    dockerfile: Dockerfile.arm32v7
+    build:
+      context: .
+    dns: 10.89.10.1
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: shinobi
+      MYSQL_USER: shinobibot
+      MYSQL_PASSWORD: Gae7Eeg2Ae
+    links:
+      - db:db
+    volumes:
+      - /mnt/storage/videos:/opt/shinobi/videos
+  motion:
+    depends_on:
+      - "db"
+    command: plugins/motion/shinobi-motion.js
+    dockerfile: Dockerfile.arm32v7
+    dns: 10.89.10.1
+    build:
+      context: .
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: shinobi
+      MYSQL_USER: shinobibot
+      MYSQL_PASSWORD: Gae7Eeg2Ae
+    links:
+      - db:db
+    volumes:
+      - /mnt/storage/videos:/opt/shinobi/videos
