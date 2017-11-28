@@ -1,7 +1,6 @@
 FROM ogomez/arm32v7-alpine
 
-WORKDIR /app
-VOLUME /app
+
 COPY startup.sh /startup.sh
 
 RUN apk add --update mysql mysql-client && rm -f /var/cache/apk/*
