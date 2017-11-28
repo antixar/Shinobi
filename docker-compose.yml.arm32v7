@@ -2,7 +2,9 @@ version: '2'
 
 services:
   db:
-    image: x11tete11x/arm32v7-mysql:latest
+    build:
+      context: ./sql/
+      dockerfile: Dockerfile.amd64
     restart: always
     volumes:
       - ./sql/docker:/docker-entrypoint-initdb.d:ro
