@@ -17,9 +17,9 @@ services:
     depends_on:
       - "db"
     command: camera.js
-    dockerfile: Dockerfile.arm32v7
     build:
       context: .
+      dockerfile: Dockerfile.arm32v7
     dns: 10.89.10.1
     restart: always
     environment:
@@ -39,9 +39,9 @@ services:
     depends_on:
       - "db"
     command: cron.js
-    dockerfile: Dockerfile.arm32v7
     build:
       context: .
+      dockerfile: Dockerfile.arm32v7
     dns: 10.89.10.1
     restart: always
     environment:
@@ -57,10 +57,10 @@ services:
     depends_on:
       - "db"
     command: plugins/motion/shinobi-motion.js
-    dockerfile: Dockerfile.arm32v7
     dns: 10.89.10.1
     build:
       context: .
+      dockerfile: Dockerfile.arm32v7
     restart: always
     environment:
       MYSQL_HOST: db
