@@ -15,6 +15,7 @@ services:
       MYSQL_PASSWORD: Gae7Eeg2Ae
       MYSQL_DATABASE: shinobi
 
+
   camera:
     depends_on:
       - "db"
